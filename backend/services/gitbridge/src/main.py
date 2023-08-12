@@ -45,5 +45,4 @@ if __name__ == "__main__":
         port=settings.app_port,
         reload=settings.debug,
         log_level="debug" if settings.debug else "info",
-        logger_config=logger._core.config,
     )
