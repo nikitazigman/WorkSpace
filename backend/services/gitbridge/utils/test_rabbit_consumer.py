@@ -1,6 +1,6 @@
 import asyncio
 
-from aio_pika import ExchangeType, connect
+from aio_pika import connect
 from aio_pika.abc import AbstractIncomingMessage
 from src.settings.application import get_app_settings
 

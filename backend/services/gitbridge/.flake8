@@ -3,8 +3,8 @@ extend-ignore =
     E203  # "Whitespace before ':'" - not PEP-8 compliant
     E501  # "Line too long (82 >= 79 characters)" - allow comments and strings to pass
     A003
-    A002 
+    A002
     B008
-    VNE003 
+    VNE003
 per-file-ignores =
     __init__.py:F401

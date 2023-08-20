@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Header, Request, Path
+from fastapi import APIRouter, Request, Path
 from src.schemas.responses import BaseResponse
 from src.services.github import (
     DGitHubIssueWebhookService,

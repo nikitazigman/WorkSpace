@@ -1,7 +1,8 @@
 import aio_pika
 from aio_pika.robust_connection import AbstractRobustConnection
 from aio_pika.exchange import AbstractExchange
-from typing import AsyncGenerator, Annotated
+from typing import Annotated
+from collections.abc import AsyncGenerator
 from src.settings.application import get_app_settings
 from fastapi import Depends
 
