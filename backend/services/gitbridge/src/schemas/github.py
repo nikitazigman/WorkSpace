@@ -1,5 +1,5 @@
 from datetime import datetime
-from src.schemas.common import CommonSchema, GithubUser
+from src.schemas.common import CommonSchema
 from enum import StrEnum
 
 
@@ -22,7 +22,52 @@ class GithubIssueAction(StrEnum):
     unpinned = "unpinned"
 
 
-class GihubIssueReaction(CommonSchema):
+class GithubPullRequestAction(StrEnum):
+    assigned = "assigned"
+    auto_merge_disabled = "auto_merge_disabled"
+    auto_merge_enabled = "auto_merge_enabled"
+    closed = "closed"
+    converted_to_draft = "converted_to_draft"
+    demilestoned = "demilestoned"
+    dequeued = "dequeued"
+    edited = "edited"
+    enqueued = "enqueued"
+    labeled = "labeled"
+    locked = "locked"
+    milestoned = "milestoned"
+    opened = "opened"
+    ready_for_review = "ready_for_review"
+    reopened = "reopened"
+    review_request_removed = "review_request_removed"
+    review_requested = "review_requested"
+    synchronize = "synchronize"
+    unassigned = "unassigned"
+    unlabeled = "unlabeled"
+    unlocked = "unlocked"
+
+
+class GithubUser(CommonSchema):
+    login: str
+    id: int
+    node_id: str
+    avatar_url: str
+    gravatar_id: str
+    url: str
+    html_url: str
+    followers_url: str
+    following_url: str
+    gists_url: str
+    starred_url: str
+    subscriptions_url: str
+    organizations_url: str
+    repos_url: str
+    events_url: str
+    received_events_url: str
+    type: str
+    site_admin: bool
+
+
+class GithubIssueReaction(CommonSchema):
     url: str
     total_count: int
     laugh: int
@@ -57,7 +102,7 @@ class GithubIssue(CommonSchema):
     author_association: str
     active_lock_reason: str | None
     body: str
-    reactions: GihubIssueReaction
+    reactions: GithubIssueReaction
     timeline_url: str
     performed_via_github_app: str | None
     state_reason: str | None
@@ -145,8 +190,17 @@ class GithubRepository(CommonSchema):
     default_branch: str
 
 
-class GithubIssuePayload(CommonSchema):
-    action: GithubIssueAction
-    issue: GithubIssue
+class GitHubCommonPayload(CommonSchema):
+    action: str
     repository: GithubRepository
     sender: GithubUser
+
+
+class GitHubIssuePayload(GitHubCommonPayload):
+    issue: GithubIssue
+
+
+class GitHubPullRequestPayload(GitHubCommonPayload):
+    assignee: GithubUser | None
+    pull_request: dict  # TODO: Implement GitHubPullRequest
+    number: int | None
