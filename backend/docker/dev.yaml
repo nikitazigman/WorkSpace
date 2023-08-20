@@ -1,0 +1,17 @@
+version: "3.2"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=dev
+      - RABBITMQ_DEFAULT_PASS=dev
+      - RABBITMQ_DEFAULT_VHOST=dev
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
