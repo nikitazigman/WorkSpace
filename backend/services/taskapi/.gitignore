@@ -320,3 +320,8 @@ cython_debug/
 
 # django-static files
 /service/staticfiles/
+# VSCode
+.vscode/
+
+# Mac
+.DS_Store
